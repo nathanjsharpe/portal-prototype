@@ -1,0 +1,20 @@
+<h2>Listing links</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Href</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for link <- @links do %>
+    <tr>
+      <td><%= link.title %></td>
+      <td><%= link.description %></td>
+      <td><%= link.href %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

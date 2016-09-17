@@ -1,0 +1,24 @@
+<h2>Listing collections</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Published at</th>
+      <th>Expires at</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for collection <- @collections do %>
+    <tr>
+      <td><%= collection.title %></td>
+      <td><%= collection.description %></td>
+      <td><%= collection.publish_at %></td>
+      <td><%= collection.expire_at %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New collection", to: admin_collection_path(@conn, :new) %>

@@ -1,0 +1,33 @@
+<h2>Show collection</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @collection.title %>
+  </li>
+
+  <li>
+    <strong>Publish at:</strong>
+    <%= @collection.publish_at %>
+  </li>
+
+  <li>
+    <strong>Expire at:</strong>
+    <%= @collection.expire_at %>
+  </li>
+
+  <li>
+    <strong>Free:</strong>
+    <%= @collection.free %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @collection.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: admin_collection_path(@conn, :edit, @collection) %>
+<%= link "Back", to: admin_collection_path(@conn, :index) %>

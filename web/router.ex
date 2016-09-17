@@ -16,7 +16,15 @@ defmodule V21.Router do
   scope "/", V21 do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    resources "/links", LinkController, only: [:index, :show]
+    resources "/", CollectionController, only: [:index, :show]
+  end
+
+  scope "/admin", V21.Admin, as: :admin do
+    pipe_through :browser
+
+    resources "/collections", CollectionController
+    resources "/links", LinkController
   end
 
   # Other scopes may use custom stacks.

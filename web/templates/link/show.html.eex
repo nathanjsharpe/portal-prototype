@@ -1,0 +1,23 @@
+<h2>Show link</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @link.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @link.description %>
+  </li>
+
+  <li>
+    <strong>Href:</strong>
+    <%= @link.href %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: link_path(@conn, :edit, @link) %>
+<%= link "Back", to: link_path(@conn, :index) %>
