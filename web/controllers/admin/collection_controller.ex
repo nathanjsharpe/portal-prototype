@@ -27,7 +27,7 @@ defmodule V21.Admin.CollectionController do
   end
 
   def show(conn, %{"id" => id}) do
-    collection = Repo.get!(Collection, id)
+    collection = Collection |> Repo.get!(id) |> Repo.preload([:links])
     render(conn, "show.html", collection: collection)
   end
 

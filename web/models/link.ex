@@ -6,7 +6,7 @@ defmodule V21.Link do
     field :description, :string
     field :href, :string
 
-    many_to_many :collections, V21.Collection, join_through: "collection_link"
+    belongs_to :collection, V21.Collection
 
     timestamps()
   end

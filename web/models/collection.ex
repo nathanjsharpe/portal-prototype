@@ -8,7 +8,7 @@ defmodule V21.Collection do
     field :free, :boolean, default: false
     field :description, :string
 
-    many_to_many :links, V21.Link, join_through: "collection_link"
+    has_many :links, V21.Link
 
     timestamps()
   end

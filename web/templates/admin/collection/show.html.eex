@@ -1,11 +1,8 @@
-<h2>Show collection</h2>
+<h2><%= @collection.title %></h2>
+
+<p><%= @collection.description %></p>
 
 <ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @collection.title %>
-  </li>
 
   <li>
     <strong>Publish at:</strong>
@@ -22,11 +19,14 @@
     <%= @collection.free %>
   </li>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @collection.description %>
-  </li>
+</ul>
 
+<h3>Links</h3>
+
+<ul>
+  <%= for coll_link <- @collection.links do %>
+    <li><%= link coll_link.title, to: coll_link.href %> - <%= coll_link.description %></li>
+  <% end %>
 </ul>
 
 <%= link "Edit", to: admin_collection_path(@conn, :edit, @collection) %>
