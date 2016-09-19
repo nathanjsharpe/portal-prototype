@@ -17,6 +17,10 @@ defmodule V21.Router do
     pipe_through :browser # Use the default browser stack
 
     resources "/links", LinkController, only: [:index, :show]
+    resources "/registrations", RegistrationController, only: [:new, :create]
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
     resources "/", CollectionController, only: [:index, :show]
   end
 
