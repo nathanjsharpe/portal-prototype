@@ -3,6 +3,8 @@ defmodule V21.CollectionController do
 
   alias V21.Collection
 
+  plug V21.Plug.Authenticate
+
   def index(conn, _params) do
     collections = Repo.all(Collection)
     render(conn, "index.html", collections: collections)

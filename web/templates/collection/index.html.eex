@@ -1,5 +1,3 @@
-<h2>Listing collections</h2>
-
 <table class="table">
   <thead>
     <tr>
@@ -12,7 +10,7 @@
   <tbody>
 <%= for collection <- @collections do %>
     <tr>
-      <td><%= collection.title %></td>
+      <td><%= link collection.title, to: collection_path(@conn, :show, collection) %></td>
       <td><%= collection.description %></td>
       <td><%= collection.publish_at %></td>
       <td><%= collection.expire_at %></td>
@@ -20,5 +18,3 @@
 <% end %>
   </tbody>
 </table>
-
-<%= link "New collection", to: admin_collection_path(@conn, :new) %>
