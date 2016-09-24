@@ -1,0 +1,21 @@
+.login-container,
+.registration-container {
+  text-align: center;
+  margin: auto;
+}
+
+.login-form,
+.registration-form {
+  text-align: left;
+  max-width: 500px;
+  border: 1px solid #ddd;
+  margin: auto;
+
+  legend {
+    text-align: center;
+  }
+
+  p {
+    padding: 0 1em;
+  }
+}

@@ -15,7 +15,7 @@ defmodule V21.RegistrationController do
 
     case V21.Registration.create(changeset, V21.Repo) do
       {:ok, changeset} ->
-        Email.welcome_confirmation_email(changeset) |> Mailer.deliver_now
+        Email.user_confirmation_email(changeset) |> Mailer.deliver_now
 
         conn
         |> put_session(:current_user, changeset.id)

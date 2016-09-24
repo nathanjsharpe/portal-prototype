@@ -1,0 +1,33 @@
+<h2><%= @episode.title %></h2>
+
+<p><%= @episode.description %></p>
+
+<ul>
+
+  <li>
+    <strong>Publish at:</strong>
+    <%= @episode.publish_at %>
+  </li>
+
+  <li>
+    <strong>Expire at:</strong>
+    <%= @episode.expire_at %>
+  </li>
+
+  <li>
+    <strong>Free:</strong>
+    <%= @episode.free %>
+  </li>
+
+</ul>
+
+<h3>Links</h3>
+
+<ul>
+  <%= for coll_link <- @episode.links do %>
+    <li><%= link coll_link.title, to: coll_link.href %> - <%= coll_link.description %></li>
+  <% end %>
+</ul>
+
+<%= link "Edit", to: admin_episode_path(@conn, :edit, @episode) %>
+<%= link "Back", to: admin_episode_path(@conn, :index) %>

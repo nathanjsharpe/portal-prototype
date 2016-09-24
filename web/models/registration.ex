@@ -4,16 +4,21 @@ defmodule V21.Registration do
 
   def create(changeset, repo) do
     changeset
-    |> put_change(:confirmation_token, generate_token(64))
-    |> put_change(:crypted_password, hashed_password(changeset.params["password"]))
+    |> prepare_create
     |> repo.insert
   end
 
-  def confirm(token, repo) do
-    {:ok, current_time } = Ecto.DateTime.cast(:calendar.universal_time)
+  def prepare_create(changeset) do
+    changeset
+    |> put_change(:confirmation_token, generate_token(64))
+    |> put_change(:crypted_password, hashed_password(changeset.params["password"]))
+  end
 
+  def confirm(token, repo) do
     repo.get_by!(User, confirmation_token: token)
-    |> User.confirmation_changeset(%{confirmation_token: nil, confirmed_at: current_time})
+    |> User.nonpass_changeset
+    |> put_change(:confirmation_token, nil)
+    |> put_change(:confirmed_at, Timex.now)
     |> repo.update
   end
 

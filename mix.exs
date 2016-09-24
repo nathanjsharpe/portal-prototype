@@ -19,7 +19,8 @@ defmodule V21.Mixfile do
   def application do
     [mod: {V21, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :bamboo]]
+                    :phoenix_ecto, :postgrex, :comeonin, :bamboo, :stripity_stripe, :timex,
+                    :timex_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,7 +41,10 @@ defmodule V21.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.5"},
      {:bamboo, "~> 0.7"},
-     {:bamboo_smtp, "~> 1.2.1"}]
+     {:bamboo_smtp, "~> 1.2.1"},
+     {:stripity_stripe, git: "https://github.com/robconery/stripity-stripe"},
+     {:timex, "~> 3.0"},
+     {:timex_ecto, "~> 3.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

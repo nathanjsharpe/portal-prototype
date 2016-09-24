@@ -8,35 +8,43 @@
     <meta name="author" content="">
 
     <title>Hello V21!</title>
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Istok+Web|Lora" rel="stylesheet">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-            <%= if logged_in?(@conn) do %>
-              <li><%= current_user(@conn).email %></li>
-              <li><%= link "Logout", to: session_path(@conn, :delete), method: :delete %></li>
-            <% else %>
-              <li><%= link "Login", to: "/login" %></li>
-              <li><%= link "Register", to: registration_path(@conn, :new) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+    <header class="header">
+      <nav role="navigation" class="main-nav pure-menu pure-menu-horizontal pure-menu-fixed">
+        <%= link "V21", to: "/", class: "pure-menu-heading nav-brand" %>
+        <ul class="pure-menu-list">
+          <%= if logged_in?(@conn) do %>
+            <li class="pure-menu-item"><%= current_user(@conn).email %></li>
+            <li class="pure-menu-item"><%= link "Logout", to: session_path(@conn, :delete), method: :delete, class: "pure-menu-link" %></li>
+          <% else %>
+            <li class="pure-menu-item"><%= link "Login", to: "/login", class: "pure-menu-link" %></li>
+            <li class="pure-menu-item"><%= link "Register User", to: registration_path(@conn, :new), class: "pure-menu-link" %></li>
+            <li class="pure-menu-item"><%= link "Register Org", to: organization_path(@conn, :new), class: "pure-menu-link" %></li>
+          <% end %>
+        </ul>
+      </nav>
+      <span class="logo"></span>
+    </header>
 
+
+    <main role="main" class="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-
-    </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

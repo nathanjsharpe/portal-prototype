@@ -6,7 +6,7 @@ defmodule V21.Link do
     field :description, :string
     field :href, :string
 
-    belongs_to :collection, V21.Collection
+    belongs_to :episode, V21.Episode
 
     timestamps()
   end

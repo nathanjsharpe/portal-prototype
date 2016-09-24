@@ -1,0 +1,26 @@
+$nav-bg-color: $brand-primary;
+
+.main-nav {
+  background: $nav-bg-color;
+
+  ul {
+    float: right;
+
+    li {
+      color: #aaa;
+    }
+
+    a {
+      color: #fff;
+
+      &:hover {
+        background: $brand-secondary;
+      }
+    }
+  }
+
+  .nav-brand {
+    font-weight: bold;
+    color: $brand-secondary;
+  }
+}

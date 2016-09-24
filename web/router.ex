@@ -23,17 +23,19 @@ defmodule V21.Router do
     resources "/links", LinkController, only: [:index, :show]
     resources "/registrations", RegistrationController, only: [:new, :create]
     get "/confirm/:token", RegistrationController, :confirm
-    resources "/subscriptions", SubscriptionController, only: [:new, :create, :show]
+    resources "/subscriptions", SubscriptionController, only: [:new, :create]
+    resources "/organizations", OrganizationController, only: [:new, :create, :index]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
-    resources "/", CollectionController, only: [:index, :show]
+    resources "/episodes", EpisodeController, only: [:index, :show]
+    get "/", EpisodeController, :current
   end
 
   scope "/admin", V21.Admin, as: :admin do
     pipe_through :browser
 
-    resources "/collections", CollectionController
+    resources "/episodes", EpisodeController
     resources "/links", LinkController
   end
 

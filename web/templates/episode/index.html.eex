@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Published at</th>
+      <th>Expires at</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for episode <- @episodes do %>
+    <tr>
+      <td><%= link episode.title, to: episode_path(@conn, :show, episode) %></td>
+      <td><%= episode.description %></td>
+      <td><%= episode.publish_at %></td>
+      <td><%= episode.expire_at %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

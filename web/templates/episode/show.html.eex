@@ -1,0 +1,33 @@
+<h2>Show episode</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @episode.title %>
+  </li>
+
+  <li>
+    <strong>Publish at:</strong>
+    <%= @episode.publish_at %>
+  </li>
+
+  <li>
+    <strong>Expire at:</strong>
+    <%= @episode.expire_at %>
+  </li>
+
+  <li>
+    <strong>Free:</strong>
+    <%= @episode.free %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @episode.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: admin_episode_path(@conn, :edit, @episode) %>
+<%= link "Back", to: admin_episode_path(@conn, :index) %>

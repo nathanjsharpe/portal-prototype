@@ -1,0 +1,7 @@
+.pure-button-primary {
+  background: $brand-primary;
+
+  &:hover {
+    background: lighten($brand-primary, 10%);
+  }
+}

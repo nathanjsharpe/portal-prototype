@@ -1,0 +1,3 @@
+<p>Welcome to V21! Please click the link below to confirm your email address:</p>
+
+<p><%= link "Confirm email", to: registration_url(V21.Endpoint, :confirm, @organization.user.confirmation_token) %></p>

@@ -7,10 +7,10 @@ defmodule V21.Repo.Migrations.CreateLink do
       add :description, :string
       add :href, :string
 
-      add :collection_id, references(:collections)
+      add :episode_id, references(:episodes)
 
       timestamps()
     end
-    create index(:links, [:collection_id])
+    create index(:links, [:episode_id])
   end
 end

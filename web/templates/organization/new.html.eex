@@ -1,0 +1,69 @@
+<div class="pure-g registration-container">
+  <%= form_for @changeset, organization_path(@conn, :create), [class: "pure-form pure-form-aligned pure-u-1 registration-form"], fn f -> %>
+    <fieldset>
+      <legend>Create Organization Account</legend>
+
+      <%= if f.errors != [] do %>
+        <div class="alert alert-danger">
+          <p>Oh no! Check out the errors below!</p>
+        </div>
+      <% end %>
+
+      <%= inputs_for f, :user, fn i -> %>
+        <div class="pure-control-group">
+          <label>Email</label>
+          <%= email_input i, :email %>
+          <%= error_tag i, :email %>
+        </div>
+
+        <div class="pure-control-group">
+          <label>Password</label>
+          <%= password_input i, :password %>
+          <%= error_tag i, :password %>
+        </div>
+      <% end %>
+
+      <div class="pure-control-group">
+        <label>Organization Name</label>
+        <%= text_input f, :name %>
+        <%= error_tag f, :name %>
+      </div>
+
+      <div class="pure-control-group">
+        <label>Street Address</label>
+        <%= text_input f, :street_address %>
+        <%= error_tag f, :street_address %>
+      </div>
+
+      <div class="pure-control-group">
+        <label>City</label>
+        <%= text_input f, :city %>
+        <%= error_tag f, :city %>
+      </div>
+
+      <div class="pure-control-group">
+        <label>State</label>
+        <%= text_input f, :state %>
+        <%= error_tag f, :state %>
+      </div>
+
+      <div class="pure-control-group">
+        <label>Zip</label>
+        <%= text_input f, :zip %>
+        <%= error_tag f, :zip %>
+      </div>
+
+      <div class="pure-control-group">
+        <label>Phone</label>
+        <%= text_input f, :phone %>
+        <%= error_tag f, :phone %>
+      </div>
+
+      <div class="pure-controls">
+        <%= submit "Create Account", class: "pure-button pure-button-primary" %>
+      </div>
+
+      <p>After we save your account, we will send you an email to verify that we have the correct email address for you.</p>
+    </fieldset>
+  <% end %>
+</div>
