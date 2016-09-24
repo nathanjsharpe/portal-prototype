@@ -1,0 +1,12 @@
+<form action="/your-charge-code" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_KVp7XmO4yge5dPTWEwFH3IGg"
+    data-amount="<%= @amount %>"
+    data-name="V21 Student"
+    data-description="Subscription for 1 year"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-label="Rip me off!">
+  </script>
+</form>

@@ -1,0 +1,19 @@
+<p>Check out our free episode.</p>
+
+<p>If you subscribe, you will receive access to a new episode every month!</p>
+
+<p>Subscribe now for $<%= @annual_cost %> and get immediate access to great content!</p>
+
+<%= form_for @conn, subscription_path(@conn, :create), [as: :subscription], fn f -> %>
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_KVp7XmO4yge5dPTWEwFH3IGg"
+    data-amount="<%= @annual_cost * 100 %>"
+    data-email="<%= current_user(@conn).email %>"
+    data-name="V21"
+    data-description="V21 1 year subscription"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-label="Subscribe">
+  </script>
+<% end %>

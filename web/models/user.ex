@@ -4,6 +4,12 @@ defmodule V21.User do
   schema "users" do
     field :email, :string
     field :crypted_password, :string
+    field :confirmation_token, :string
+    field :confirmed_at, Ecto.DateTime
+    field :stripe_token, :string
+    field :stripe_customer_id, :string
+    field :active_until, Ecto.DateTime
+
     field :password, :string, virtual: true
 
     timestamps()
@@ -18,5 +24,10 @@ defmodule V21.User do
     |> validate_required([:email, :password])
     |> unique_constraint(:email)
     |> validate_format(:email, ~r/@/)
+  end
+
+  def confirmation_changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:confirmation_token, :confirmed_at])
   end
 end

@@ -13,11 +13,17 @@ defmodule V21.Router do
     plug :accepts, ["json"]
   end
 
+  if Mix.env == :dev do
+    forward "/sent_emails", Bamboo.EmailPreviewPlug
+  end
+
   scope "/", V21 do
     pipe_through :browser # Use the default browser stack
 
     resources "/links", LinkController, only: [:index, :show]
     resources "/registrations", RegistrationController, only: [:new, :create]
+    get "/confirm/:token", RegistrationController, :confirm
+    resources "/subscriptions", SubscriptionController, only: [:new, :create, :show]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
@@ -30,6 +36,7 @@ defmodule V21.Router do
     resources "/collections", CollectionController
     resources "/links", LinkController
   end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", V21 do

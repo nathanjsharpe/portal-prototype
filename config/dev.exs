@@ -41,3 +41,14 @@ config :v21, V21.Repo,
   database: "v21_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :v21, V21.Mailer,
+  # adapter: Bamboo.SMTPAdapter,
+  adapter: Bamboo.LocalAdapter,
+  server: "email-smtp.us-east-1.amazonaws.com",
+  port: 587,
+  username: System.get_env("SMTP_USERNAME"),
+  password: System.get_env("SMTP_PASSWORD"),
+  tls: :always,
+  ssl: false, # can be `true`
+  retries: 1
