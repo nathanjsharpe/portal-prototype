@@ -13,30 +13,47 @@ defmodule V21.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :authenticate_user do
+    plug V21.Plug.Authenticate
+  end
+
+  pipeline :admin do
+    plug V21.Plug.AuthenticateAdmin
+  end
+
   if Mix.env == :dev do
     forward "/sent_emails", Bamboo.EmailPreviewPlug
   end
 
   scope "/", V21 do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
-    resources "/links", LinkController, only: [:index, :show]
     resources "/registrations", RegistrationController, only: [:new, :create]
     get "/confirm/:token", RegistrationController, :confirm
     resources "/subscriptions", SubscriptionController, only: [:new, :create]
-    resources "/organizations", OrganizationController, only: [:new, :create, :index]
+    resources "/organizations", OrganizationController, only: [:new, :create]
     get "/login", SessionController, :new
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
+  end
+
+  scope "/", V21 do
+    pipe_through :browser
+    pipe_through :authenticate_user
+
+    resources "/links", LinkController, only: [:index, :show]
+    resources "/organizations", OrganizationController, only: [:index]
     resources "/episodes", EpisodeController, only: [:index, :show]
     get "/", EpisodeController, :current
   end
 
   scope "/admin", V21.Admin, as: :admin do
     pipe_through :browser
+    pipe_through :admin
 
-    resources "/episodes", EpisodeController
-    resources "/links", LinkController
+    resources "/episodes", EpisodeController do
+      resources "/links", LinkController
+    end
   end
 
 

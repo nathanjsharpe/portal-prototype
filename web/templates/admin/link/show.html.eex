@@ -1,23 +1,35 @@
-<h2>Show link</h2>
+<h2><%= @episode.title %></h2>
+
+<p><%= @episode.description %></p>
 
 <ul>
 
   <li>
-    <strong>Title:</strong>
-    <%= @link.title %>
+    <strong>Publish at:</strong>
+    <%= @episode.publish_at %>
   </li>
 
   <li>
-    <strong>Description:</strong>
-    <%= @link.description %>
+    <strong>Expire at:</strong>
+    <%= @episode.expire_at %>
   </li>
 
   <li>
-    <strong>Href:</strong>
-    <%= @link.href %>
+    <strong>Free:</strong>
+    <%= @episode.free %>
   </li>
 
 </ul>
 
-<%= link "Edit", to: admin_link_path(@conn, :edit, @link) %>
-<%= link "Back", to: admin_link_path(@conn, :index) %>
+<h3>Links</h3>
+
+<ul>
+  <%= for coll_link <- @episode.links do %>
+    <li><%= link coll_link.title, to: coll_link.href %> - <%= coll_link.description %></li>
+  <% end %>
+</ul>
+
+<%= link "Add link", to: admin_episode_link_path(@conn, :new, @episode), class: "pure-button" %>
+
+<%= link "Edit", to: admin_episode_path(@conn, :edit, @episode) %>
+<%= link "Back", to: admin_episode_path(@conn, :index) %>

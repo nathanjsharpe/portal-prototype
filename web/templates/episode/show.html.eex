@@ -1,33 +1,24 @@
-<h2>Show episode</h2>
+<%= if @episode do %>
+  <h1><%= @episode.title %></h1>
 
-<ul>
+  <p><%= @episode.description %></p>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @episode.title %>
-  </li>
+  <h3>Links</h3>
 
-  <li>
-    <strong>Publish at:</strong>
-    <%= @episode.publish_at %>
-  </li>
+  <ul>
+    <%= for coll_link <- @episode.links do %>
+      <li><%= link coll_link.title, to: coll_link.href %> - <%= coll_link.description %> (<%= coll_link.category %>)</li>
+    <% end %>
+  </ul>
 
-  <li>
-    <strong>Expire at:</strong>
-    <%= @episode.expire_at %>
-  </li>
+  <h3>Videos</h3>
 
-  <li>
-    <strong>Free:</strong>
-    <%= @episode.free %>
-  </li>
+  <iframe src="https://player.vimeo.com/video/43116240?title=1&byline=0&portrait=0" width="900" height="506" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  <p></p>
 
-  <li>
-    <strong>Description:</strong>
-    <%= @episode.description %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: admin_episode_path(@conn, :edit, @episode) %>
-<%= link "Back", to: admin_episode_path(@conn, :index) %>
+  <p>
+    Available until <%= @episode.expire_at %>
+  </p>
+<% else %>
+  <p>No episode</p>
+<% end %>

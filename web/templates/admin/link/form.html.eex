@@ -1,9 +1,11 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [class: "pure-form pure-form-stacked"], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
+
+  <%= hidden_input f, :episode_id %>
 
   <div class="form-group">
     <%= label f, :title, class: "control-label" %>
@@ -13,17 +15,23 @@
 
   <div class="form-group">
     <%= label f, :description, class: "control-label" %>
-    <%= text_input f, :description, class: "form-control" %>
+    <%= textarea f, :description, class: "form-control" %>
     <%= error_tag f, :description %>
   </div>
 
   <div class="form-group">
     <%= label f, :href, class: "control-label" %>
-    <%= text_input f, :href, class: "form-control" %>
+    <%= url_input f, :href, class: "form-control", placeholder: "http://example.com" %>
     <%= error_tag f, :href %>
   </div>
 
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= label f, :category, class: "control-label" %>
+    <%= select f, :category, ["Movie": "movie", "Recommended Reading": "reading"], prompt: "Choose a category", class: "form-control" %>
+    <%= error_tag f, :category %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "pure-button pure-button-primary" %>
   </div>
 <% end %>

@@ -16,6 +16,8 @@ defmodule V21.Session do
 
   def logged_in?(conn), do: !!current_user(conn)
 
+  def admin_logged_in?(conn), do: logged_in?(conn) && current_user(conn).admin
+
   defp authenticate(user, password) do
     case user do
       nil -> false

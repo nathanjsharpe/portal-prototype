@@ -25,9 +25,11 @@
 
 <ul>
   <%= for coll_link <- @episode.links do %>
-    <li><%= link coll_link.title, to: coll_link.href %> - <%= coll_link.description %></li>
+    <li><%= link coll_link.title, to: coll_link.href %> - <%= coll_link.description %> (<%= coll_link.category %>)</li>
   <% end %>
 </ul>
+
+<%= link "Add link", to: admin_episode_link_path(@conn, :new, @episode), class: "pure-button" %>
 
 <%= link "Edit", to: admin_episode_path(@conn, :edit, @episode) %>
 <%= link "Back", to: admin_episode_path(@conn, :index) %>

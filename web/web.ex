@@ -53,7 +53,7 @@ defmodule V21.Web do
       import V21.Router.Helpers
       import V21.ErrorHelpers
       import V21.Gettext
-      import V21.Session, only: [current_user: 1, logged_in?: 1]
+      import V21.Session, only: [current_user: 1, logged_in?: 1, admin_logged_in?: 1]
     end
   end
 

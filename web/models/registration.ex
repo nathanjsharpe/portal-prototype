@@ -22,7 +22,7 @@ defmodule V21.Registration do
     |> repo.update
   end
 
-  defp hashed_password(password) do
+  def hashed_password(password) do
     Comeonin.Bcrypt.hashpwsalt(password)
   end
 

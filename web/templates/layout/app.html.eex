@@ -25,6 +25,9 @@
       <nav role="navigation" class="main-nav pure-menu pure-menu-horizontal pure-menu-fixed">
         <%= link "V21", to: "/", class: "pure-menu-heading nav-brand" %>
         <ul class="pure-menu-list">
+          <%= if admin_logged_in?(@conn) do %>
+            <li class="pure-menu-item">ADMIN</li>
+          <% end %>
           <%= if logged_in?(@conn) do %>
             <li class="pure-menu-item"><%= current_user(@conn).email %></li>
             <li class="pure-menu-item"><%= link "Logout", to: session_path(@conn, :delete), method: :delete, class: "pure-menu-link" %></li>

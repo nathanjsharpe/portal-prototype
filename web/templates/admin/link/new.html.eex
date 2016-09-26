@@ -1,6 +1,6 @@
-<h2>New link</h2>
+<h2>New episode</h2>
 
 <%= render "form.html", changeset: @changeset,
-                        action: admin_link_path(@conn, :create) %>
+                        action: admin_episode_link_path(@conn, :create, @episode_id) %>
 
-<%= link "Back", to: admin_link_path(@conn, :index) %>
+<%= link "Back", to: admin_episode_path(@conn, :show, @episode_id), class: "pure-button" %>

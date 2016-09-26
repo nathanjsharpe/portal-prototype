@@ -227,3 +227,13 @@ Fill in information and click pay 12
 /episodes
 Current Episode
 Upcoming Episode
+
+
+# content
+
+Link
+  title
+  type: 'Movie', 'Reading'
+
+Image
+  social_media

@@ -9,3 +9,10 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+V21.Repo.insert!(%V21.User{
+  email: "admin@cliftonlabs.com",
+  confirmed_at: Timex.now,
+  admin: true,
+  crypted_password: V21.Registration.hashed_password("password")
+})

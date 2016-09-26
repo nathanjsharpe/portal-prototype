@@ -9,6 +9,7 @@ defmodule V21.User do
     field :stripe_token, :string
     field :stripe_customer_id, :string
     field :active_until, Timex.Ecto.DateTime
+    field :admin, :boolean
 
     field :password, :string, virtual: true
 

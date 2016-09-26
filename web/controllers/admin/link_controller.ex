@@ -1,3 +1,5 @@
+require IEx
+
 defmodule V21.Admin.LinkController do
   use V21.Web, :controller
 
@@ -8,21 +10,22 @@ defmodule V21.Admin.LinkController do
     render(conn, "index.html", links: links)
   end
 
-  def new(conn, _params) do
-    changeset = Link.changeset(%Link{})
-    render(conn, "new.html", changeset: changeset)
+  def new(conn, %{"episode_id" => episode_id}) do
+    IEx.pry
+    changeset = Link.changeset(%Link{episode_id: episode_id})
+    render(conn, "new.html", changeset: changeset, episode_id: episode_id)
   end
 
-  def create(conn, %{"link" => link_params}) do
+  def create(conn, %{"link" => link_params, "episode_id" => episode_id}) do
     changeset = Link.changeset(%Link{}, link_params)
 
     case Repo.insert(changeset) do
       {:ok, _link} ->
         conn
         |> put_flash(:info, "Link created successfully.")
-        |> redirect(to: admin_link_path(conn, :index))
+        |> redirect(to: admin_episode_path(conn, :show, episode_id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, episode_id: episode_id)
     end
   end
 
@@ -45,7 +48,7 @@ defmodule V21.Admin.LinkController do
       {:ok, link} ->
         conn
         |> put_flash(:info, "Link updated successfully.")
-        |> redirect(to: admin_link_path(conn, :show, link))
+        |> redirect(to: admin_episode_link_path(conn, :show, link, 1))
       {:error, changeset} ->
         render(conn, "edit.html", link: link, changeset: changeset)
     end
@@ -60,6 +63,6 @@ defmodule V21.Admin.LinkController do
 
     conn
     |> put_flash(:info, "Link deleted successfully.")
-    |> redirect(to: admin_link_path(conn, :index))
+    |> redirect(to: admin_episode_link_path(conn, :index, 1))
   end
 end

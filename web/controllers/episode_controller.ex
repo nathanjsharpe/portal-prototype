@@ -6,7 +6,10 @@ defmodule V21.EpisodeController do
   plug V21.Plug.Authenticate
 
   def index(conn, _params) do
-    episodes = Repo.all(Episode)
+    episodes = V21.Episode
+      |> Episode.published
+      |> Episode.expired
+      |> Repo.all
     render(conn, "index.html", episodes: episodes)
   end
 
