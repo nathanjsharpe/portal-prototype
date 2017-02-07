@@ -1,3 +1,5 @@
+This was a prototype I put together over several evenings to pitch Phoenix as an alternative to Rails for a project my company started in late 2016. We did end up using Rails, but I certainly don't regret trying out Phoenix, albeit briefly. And I think as more people choose Phoenix over Rails, it'll become easier to pitch it as a better alternative.
+
 # V21
 
 To start your Phoenix app:
